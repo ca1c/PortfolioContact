@@ -4,6 +4,7 @@
   "description": "My portfolio contact server",
   "main": "app.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "run": "node app.js"
   },
   "author": "Talon Bragg",
