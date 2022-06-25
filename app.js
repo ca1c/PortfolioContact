@@ -28,7 +28,7 @@ async function sendMessage(fName, lName, email, bodyText) {
     let info = await transporter.sendMail({
         from: email,
         to: process.env.MAIL_USER,
-        subject: `${fName} ${lName} - Portfolio Contact`,
+        subject: `${fName} ${lName} - ${email} - Portfolio Contact`,
         text: bodyText,
     });
 
