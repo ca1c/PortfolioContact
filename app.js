@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://portfolio-ca1c.vercel.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "https://portfolio-ca1c.vercel.app");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -40,12 +40,20 @@ app.get('/', (req, res) => {
 })
 
 app.post('/sendMessage', (req, res) => {
-    sendMessage(req.body.fName, req.body.lName, req.body.email, req.body.bodyText)
-        .then(() => {
-            res.send({success: true, message: "Message Sent!"});
-        })
-        .catch(console.error());
-
+    if(!req.body) {
+      res.send({success: false, message: "No request body."})
+    }
+    else if(!req.body.fName || !req.body.lName || !req.body.email || !req.body.bodyText || Object.keys(req.body).length !== 4) {
+      res.send({success: false, message: "Incomplete or Incorrect data."});
+      return;
+    }
+    else {
+      sendMessage(req.body.fName, req.body.lName, req.body.email, req.body.bodyText)
+          .then(() => {
+              res.send({success: true, message: "Message Sent!"});
+          })
+          .catch(console.error());
+    }
 })
 
 app.listen(process.env.PORT || 3000);
