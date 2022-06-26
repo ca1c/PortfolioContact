@@ -57,3 +57,7 @@ app.post('/sendMessage', (req, res) => {
     }
 })
 ```
+
+## Deployment
+
+I personally deployed this project with [heroku](https://www.heroku.com/), but there are many other services you can use to deploy this project. It is necessary to add your environment variables in whatever deployment host you are using. Many of these deployment services have tutorials for this.
